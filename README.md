@@ -144,10 +144,10 @@ The goal of this project is to practice the use of NGINX and Docker Compose for 
       networks:
         - mynetwork
 
-  networks:
-    mynetwork:
-      driver: bridge
-   ```
+    networks:
+      mynetwork:
+        driver: bridge
+    ```
 
 ### Verifying the Setup
 
