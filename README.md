@@ -103,20 +103,20 @@ The goal of this project is to practice the use of NGINX and Docker Compose for 
    Defines the multi-container setup with two Django instances and one NGINX instance.
 
    ```yaml
-  version: '3'
-
-  services:
-    django1:
-      build:
-        context: ./api/
-        dockerfile: Dockerfile
-      environment:
-        - DJANGO_SETTINGS_MODULE=api.settings
-        - INSTANCE=1
-      networks:
-        - mynetwork
-      ports:
-        - 8001:8000
+     version: '3'
+   
+     services:
+       django1:
+         build:
+           context: ./api/
+           dockerfile: Dockerfile
+         environment:
+           - DJANGO_SETTINGS_MODULE=api.settings
+           - INSTANCE=1
+         networks:
+           - mynetwork
+         ports:
+           - 8001:8000
 
     django2:
       build:
