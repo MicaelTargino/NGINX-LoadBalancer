@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  django1:
+    build:
+      context: ./api/
+      dockerfile: Dockerfile
+    environment:
+      - DJANGO_SETTINGS_MODULE=api.settings
+      - INSTANCE=1
+    networks:
+      - mynetwork
+    ports:
+      - 8001:8000
+
+  django2:
+    build:
+      context: ./api/
+      dockerfile: Dockerfile
+    environment:
+      - DJANGO_SETTINGS_MODULE=api.settings
+      - INSTANCE=2
+    networks:
+      - mynetwork
+    ports:
+      - 8002:8000    
+    
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - django1
+      - django2
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
